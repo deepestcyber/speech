@@ -1,0 +1,14 @@
+# words that are easily mistaken for bad words
+duck
+fit
+misfit
+grunt
+
+# 'normal' words
+person
+chicken
+what
+he
+she
+it
+when
