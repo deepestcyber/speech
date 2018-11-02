@@ -9,13 +9,21 @@ for word in $words; do
 	./forvo -word "$word" | while read label_url; do
 		label=$(echo $label_url | cut -d ":" -f 1)
 		url=$(echo $label_url | cut -d ":" -f 2-)
-		echo $label , $url
 		path="download/${label}_${i}.mp3"
+
+		i=$(expr $i + 1)
+
 		if [ -e "$path" ]; then
 			echo "$path already exists, skipping."
 			continue
 		fi
-		wget $url -O $path
-		i=$(expr $i + 1)
+
+		wget -q $url -O $path
+
+		if [ $? -eq 0 ]; then
+			echo "download $path: OK"
+		else
+			echo "download $path: failed"
+		fi
 	done
 done
